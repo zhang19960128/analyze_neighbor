@@ -103,18 +103,23 @@ traject=[];
 posit=[];
 varall=[];
 for atomnum in atomlist:
-    neilist=neighbor_o_forA(atomnum,cell);
-		traject=[];
-    for i in range(step):
-        atomposit=getposition(atomnum,cell,i,raw_data);
-        posit.append(atomposit);
-        sum=np.zeros(3);
-        for j in range(12):
-            pi=getposition(neilist[j],cell,i,raw_data);
-            p=getperiodical(cell,i,raw_data);
-            dis=disp(atomposit,pi,p);
-            sum=sum+dis;
-        sum=sum/12.0;
-        traject.append(sum);
-		varall.append(np.var(traject));
-length=len(traject);
+	traject=[];
+	neilist=neighbor_o_forA(atomnum,cell);
+	for i in range(step):
+		atomposit=getposition(atomnum,cell,i,raw_data);
+		posit.append(atomposit);
+		sum=np.zeros(3);
+		for j in range(12):
+			pi=getposition(neilist[j],cell,i,raw_data);
+			p=getperiodical(cell,i,raw_data);
+			dis=disp(atomposit,pi,p);
+			sum=sum+dis;
+		sum=sum/12.0;
+		traject.append(sum);
+	varall.append(np.var(traject));
+final=open("final.txt","w");
+for i in varall:
+        temp="";
+        for j in i:
+                temp=temp+" "+str(j);
+        final.write(temp+"\n");
