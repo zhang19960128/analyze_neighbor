@@ -74,9 +74,9 @@ def neitp(i,j,p):
     tempj=index1Dto3D(j,p);
     '''this actually told you which neighbor they are:'''
     for i in range(3):
-        if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==period-1):
+        if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==p-1):
             return 2-i;
-period=20;
+period=10;
 canei=neigh(period);
 caall=np.loadtxt("cadata.txt");
 balist=set(range(period*period*period))-set(caall);
@@ -95,7 +95,8 @@ for i in balist:
 data=np.loadtxt("final.txt");
 sum=np.zeros((7,3));# this actually predicts the number of ca neighbor atoms and it's influence.
 for i in ba_ca:
-	sum[i[0]]=np.add(sum[i[0]],data[i[1]]);
+    print i
+    sum[i[0]]=np.add(sum[i[0]],data[i[1]]);
 for i in range(7):
 	sum[i]=np.divide(sum[i],count[i]);
 print sum
