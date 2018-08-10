@@ -120,4 +120,3 @@ for atomnum in atomlist:
 final=open("final.txt","w");
 for j in varall:
     final.write(str(j[0])+" "+str(j[1])+" "+str(j[2])+"\n");
-
