@@ -94,7 +94,7 @@ def maxangle(traject):
             angleall.append(ag);
     return max(angleall)
 f=open(sys.argv[1],"r");
-cell=20;
+cell=10;
 raw_data=f.readlines();
 lines=len(raw_data);
 step=lines/(5*cell*cell*cell+9);
