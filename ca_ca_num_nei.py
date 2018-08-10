@@ -76,7 +76,7 @@ def neitp(i,j,p):
     for i in range(3):
         if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==p-1):
             return 2-i;
-period=20;
+period=10;
 canei=neigh(period);
 caall=np.loadtxt("cadata.txt");
 balist=set(range(period*period*period))-set(caall);
