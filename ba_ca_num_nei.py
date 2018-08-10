@@ -74,7 +74,7 @@ def neitp(i,j,p):
     tempj=index1Dto3D(j,p);
     '''this actually told you which neighbor they are:'''
     for i in range(3):
-        if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==p-1):
+        if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==period-1):
             return 2-i;
 period=20;
 canei=neigh(period);
@@ -83,31 +83,18 @@ balist=set(range(period*period*period))-set(caall);
 balist=list(balist);
 noca=set(caall)-set(canei);
 noca=sorted(list(noca))
-f_no=open("noneighbor.txt","w");
-f_nei_pair=open("neighbor.txt","w");
 sin=[];
 dou=[];
-ca_ca=[];
+ba_ca=[];
 count=np.zeros((7,1));
-for i in caall:
+for i in balist:
 	temp=searchAone(i,period);
 	common=set(caall)-(set(caall)-set(temp));
-	ca_ca.append([len(common),i]);
+	ba_ca.append([len(common),i]);# the first variable store how many ca neighbors you have for this site, the second stores the atom_tick
 	count[len(common)]=count[len(common)]+1;
-for i in noca:
-    f_no.write(str(int(i))+"\n");
-    sin.append(int(i));
-for i in canei:
-    temp=searchAone(i,period);
-    common=set(caall)-(set(caall)-set(temp));
-    common=list(common);
-    for j in common:
-        if(i<j):
-            f_nei_pair.write(str(int(i))+" "+str(int(j))+" "+str(neitp(i,j,period))+"\n");
-	    dou.append([int(i),int(j),neitp(i,j,period)]);
 data=np.loadtxt("final.txt");
 sum=np.zeros((7,3));# this actually predicts the number of ca neighbor atoms and it's influence.
-for i in ca_ca:
+for i in ba_ca:
 	sum[i[0]]=np.add(sum[i[0]],data[i[1]]);
 for i in range(7):
 	sum[i]=np.divide(sum[i],count[i]);
