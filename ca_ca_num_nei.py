@@ -106,7 +106,7 @@ for i in canei:
             f_nei_pair.write(str(int(i))+" "+str(int(j))+" "+str(neitp(i,j,period))+"\n");
 	    dou.append([int(i),int(j),neitp(i,j,period)]);
 data=np.loadtxt("final.txt");
-sum=np.zeros((7,3));
+sum=np.zeros((7,3));# this actually predicts the number of ca neighbor atoms and it's influence.
 for i in ca_ca:
 	sum[i[0]]=np.add(sum[i[0]],data[i[1]]);
 for i in range(7):
