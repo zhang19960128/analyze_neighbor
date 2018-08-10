@@ -95,7 +95,6 @@ for i in balist:
 data=np.loadtxt("final.txt");
 sum=np.zeros((7,3));# this actually predicts the number of ca neighbor atoms and it's influence.
 for i in ba_ca:
-    print i
     sum[i[0]]=np.add(sum[i[0]],data[i[1]]);
 for i in range(7):
 	sum[i]=np.divide(sum[i],count[i]);
