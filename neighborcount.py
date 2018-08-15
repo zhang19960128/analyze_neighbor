@@ -105,5 +105,4 @@ for i in canei:
         if(i<j):
             f_nei_pair.write(str(int(i))+" "+str(int(j))+" "+str(neitp(i,j,period))+"\n");
 	    dou.append([int(i),int(j),neitp(i,j,period)]);
-print sin
-print dou
+print len(dou)
