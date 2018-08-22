@@ -76,33 +76,34 @@ def neitp(i,j,p):
     for i in range(3):
         if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==p-1):
             return 2-i;
-period=10;
-canei=neigh(period);
-caall=np.loadtxt("cadata.txt");
-balist=set(range(period*period*period))-set(caall);
-balist=list(balist);
-noca=set(caall)-set(canei);
-noca=sorted(list(noca))
-f_no=open("noneighbor.txt","w");
-f_nei_pair=open("neighbor.txt","w");
-sin=[];
-dou=[];
-ca_ca=[];
-count=np.zeros((7,1));
-for i in caall:
-	temp=searchAone(i,period);
+if __name__ == "__main__":
+    period=10;
+    canei=neigh(period);
+    caall=np.loadtxt("cadata.txt");
+    balist=set(range(period*period*period))-set(caall);
+    balist=list(balist);
+    noca=set(caall)-set(canei);
+    noca=sorted(list(noca))
+    f_no=open("noneighbor.txt","w");
+    f_nei_pair=open("neighbor.txt","w");
+    sin=[];
+    dou=[];
+    ca_ca=[];
+    count=np.zeros((7,1));
+    for i in caall:
+    	temp=searchAone(i,period);
 	common=set(caall)-(set(caall)-set(temp));
 	ca_ca.append([len(common),i]);
 	count[len(common)]=count[len(common)]+1;
-for i in noca:
-    f_no.write(str(int(i))+"\n");
-    sin.append(int(i));
-for i in canei:
-    temp=searchAone(i,period);
-    common=set(caall)-(set(caall)-set(temp));
-    common=list(common);
-    for j in common:
-        if(i<j):
-            f_nei_pair.write(str(int(i))+" "+str(int(j))+" "+str(neitp(i,j,period))+"\n");
-	    dou.append([int(i),int(j),neitp(i,j,period)]);
-print len(dou)
+    for i in noca:
+        f_no.write(str(int(i))+"\n");
+        sin.append(int(i));
+    for i in canei:
+        temp=searchAone(i,period);
+        common=set(caall)-(set(caall)-set(temp));
+        common=list(common);
+        for j in common:
+            if(i<j):
+                f_nei_pair.write(str(int(i))+" "+str(int(j))+" "+str(neitp(i,j,period))+"\n");
+	        dou.append([int(i),int(j),neitp(i,j,period)]);
+    print len(dou)

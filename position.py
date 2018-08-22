@@ -93,31 +93,32 @@ def maxangle(traject):
             print ag
             angleall.append(ag);
     return max(angleall)
-f=open(sys.argv[1],"r");
-cell=10;
-raw_data=f.readlines();
-lines=len(raw_data);
-step=lines/(5*cell*cell*cell+9);
-calist=[int(sys.argv[2])];
-traject=[];
-posit=[];
-for atomnum in calist:
-    neilist=neighbor_o_forA(atomnum,cell);
-    for i in range(step):
-        atomposit=getposition(atomnum,cell,i,raw_data);
-        posit.append(atomposit);
-        sum=np.zeros(3);
-        for j in range(12):
-            pi=getposition(neilist[j],cell,i,raw_data);
-            p=getperiodical(cell,i,raw_data);
-            dis=disp(atomposit,pi,p);
-            sum=sum+dis;
-        sum=sum/12.0;
-        traject.append(sum);
-length=len(traject);
-for j in range(length):
-    sph=cart2sph(traject[j]);
-    print str(traject[j][0])+" "+str(traject[j][1])+" "+str(traject[j][2])
+if __name__=="__main__":
+    f=open(sys.argv[1],"r");
+    cell=10;
+    raw_data=f.readlines();
+    lines=len(raw_data);
+    step=lines/(5*cell*cell*cell+9);
+    calist=[int(sys.argv[2])];
+    traject=[];
+    posit=[];
+    for atomnum in calist:
+        neilist=neighbor_o_forA(atomnum,cell);
+        for i in range(step):
+            atomposit=getposition(atomnum,cell,i,raw_data);
+            posit.append(atomposit);
+            sum=np.zeros(3);
+            for j in range(12):
+                pi=getposition(neilist[j],cell,i,raw_data);
+                p=getperiodical(cell,i,raw_data);
+                dis=disp(atomposit,pi,p);
+                sum=sum+dis;
+            sum=sum/12.0;
+            traject.append(sum);
+    length=len(traject);
+    for j in range(length):
+        sph=cart2sph(traject[j]);
+        print str(traject[j][0])+" "+str(traject[j][1])+" "+str(traject[j][2])
 """
 print maxangle(traject)
 """
