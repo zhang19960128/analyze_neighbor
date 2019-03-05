@@ -12,7 +12,7 @@ import position as ps
 import setting
 setting.init();
 f=open(setting.traject_file,"r");
-cell=period;
+cell=setting.period;
 raw_data=f.readlines();
 lines=len(raw_data);
 step=lines/(5*cell*cell*cell+9);
