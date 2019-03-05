@@ -2,9 +2,10 @@
 import numpy as np
 import math
 import neighborcount as nc
-period=10;
-canei=nc.neigh(period);
-caall=np.loadtxt("cadata.txt");
+import setting
+setting.init();
+canei=nc.neigh(setting.period);
+caall=np.loadtxt(setting.cafile);
 balist=set(range(period*period*period))-set(caall);
 balist=list(balist);
 noca=set(caall)-set(canei);

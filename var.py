@@ -9,8 +9,10 @@ import numpy as np
 import math
 import sys
 import position as ps
-f=open(sys.argv[1],"r");
-cell=10;
+import setting
+setting.init();
+f=open(setting.traject_file,"r");
+cell=period;
 raw_data=f.readlines();
 lines=len(raw_data);
 step=lines/(5*cell*cell*cell+9);
