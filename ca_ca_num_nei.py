@@ -6,6 +6,7 @@ import setting
 setting.init();
 canei=nc.neigh(setting.period);
 caall=np.loadtxt(setting.cafile);
+period=setting.period;
 balist=set(range(period*period*period))-set(caall);
 balist=list(balist);
 noca=set(caall)-set(canei);
