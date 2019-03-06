@@ -2,7 +2,7 @@
 import numpy as np
 import math
 import neighborcount as nc
-import setting.py
+import setting
 setting.init();
 canei=nc.neigh(setting.period);
 caall=np.loadtxt(setting.cafile);
