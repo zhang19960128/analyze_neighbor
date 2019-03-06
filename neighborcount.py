@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 import numpy as np
 import math
+import setting
 def wash(pointone,pointtwo,pb):
     dis=pb[1]-pb[0];
     if(pointtwo-pointone>dis/2):
@@ -56,7 +57,7 @@ def searchAthree(index,p):
                     laythree.append(index3Dto1D([nx+i,ny+j,nz+k],p));
     return laythree;
 def neigh(p):
-    calist=open("cadata.txt","r");
+    calist=open(setting.cafile,"r");
     ca=[];
     for i in calist.readlines():
          ca.append(int(i));
@@ -77,9 +78,9 @@ def neitp(i,j,p):
         if(math.fabs(tempi[i]-tempj[i])==1 or math.fabs(tempi[i]-tempj[i])==p-1):
             return 2-i;
 if __name__ == "__main__":
-    period=10;
+    period=setting.period;
     canei=neigh(period);
-    caall=np.loadtxt("cadata.txt");
+    caall=np.loadtxt(setting.cafile);
     balist=set(range(period*period*period))-set(caall);
     balist=list(balist);
     noca=set(caall)-set(canei);
